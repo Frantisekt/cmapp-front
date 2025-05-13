@@ -4,6 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material';
 import { MainLayout } from './layouts/MainLayout';
 import { PatientsPage } from './pages/PatientsPage';
 import { DentistsPage } from './pages/DentistsPage';
+import { AppointmentsPage } from './pages/AppointmentsPage';
 
 // Crear el cliente de React Query
 const queryClient = new QueryClient();
@@ -30,7 +31,7 @@ function App() {
               <Route path="/" element={<Navigate to="/patients" replace />} />
               <Route path="/patients" element={<PatientsPage />} />
               <Route path="/dentists" element={<DentistsPage />} />
-              <Route path="/appointments/*" element={<div>Citas</div>} />
+              <Route path="/appointments" element={<AppointmentsPage />} />
               <Route path="/treatments/*" element={<div>Tratamientos</div>} />
               <Route path="/dental-records/*" element={<div>Expedientes</div>} />
             </Routes>

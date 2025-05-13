@@ -33,9 +33,9 @@ export interface Appointment {
   id: string;
   patientId: string;
   dentistId: string;
-  date: string;
-  time: string;
-  status: string;
+  dateTime: string;
+  status: 'SCHEDULED' | 'CANCELLED' | 'COMPLETED';
+  consultationNumber: string;
   notes: string;
 }
 

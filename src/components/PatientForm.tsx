@@ -24,6 +24,7 @@ interface FormErrors {
   firstName?: string;
   lastName?: string;
   email?: string;
+  address?: string;
 }
 
 export const PatientForm = ({ open, onClose, onSubmit, initialData, title }: PatientFormProps) => {
@@ -33,10 +34,19 @@ export const PatientForm = ({ open, onClose, onSubmit, initialData, title }: Pat
     lastName: '',
     email: '',
     phone: '',
-    recordNumber: ''
+    recordNumber: '',
+    address: '',
+    birthDate: '',
+    gender: ''
   });
 
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [errors, setErrors] = useState<FormErrors>({
+    dni: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    address: ''
+  });
 
   useEffect(() => {
     if (initialData) {
@@ -46,7 +56,10 @@ export const PatientForm = ({ open, onClose, onSubmit, initialData, title }: Pat
         lastName: initialData.lastName,
         email: initialData.email,
         phone: initialData.phone,
-        recordNumber: initialData.recordNumber
+        recordNumber: initialData.recordNumber,
+        address: initialData.address,
+        birthDate: initialData.birthDate,
+        gender: initialData.gender
       });
     } else {
       setFormData({
@@ -55,7 +68,10 @@ export const PatientForm = ({ open, onClose, onSubmit, initialData, title }: Pat
         lastName: '',
         email: '',
         phone: '',
-        recordNumber: ''
+        recordNumber: '',
+        address: '',
+        birthDate: '',
+        gender: ''
       });
     }
     setErrors({});
@@ -175,6 +191,19 @@ export const PatientForm = ({ open, onClose, onSubmit, initialData, title }: Pat
                 fullWidth
                 required
                 placeholder="Ingrese el número de teléfono"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="address"
+                label="Dirección"
+                value={formData.address}
+                onChange={handleChange}
+                fullWidth
+                required
+                error={!!errors.address}
+                helperText={errors.address}
+                placeholder="Ingrese la dirección completa"
               />
             </Grid>
           </Grid>
