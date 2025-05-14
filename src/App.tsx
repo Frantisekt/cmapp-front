@@ -5,6 +5,7 @@ import { MainLayout } from './layouts/MainLayout';
 import { PatientsPage } from './pages/PatientsPage';
 import { DentistsPage } from './pages/DentistsPage';
 import { AppointmentsPage } from './pages/AppointmentsPage';
+import { DentalRecordsPage } from './pages/DentalRecordsPage';
 
 // Crear el cliente de React Query
 const queryClient = new QueryClient();
@@ -21,11 +22,18 @@ const theme = createTheme({
   },
 });
 
+// Configuración del router con la bandera futura
+const router = {
+  future: {
+    v7_relativeSplatPath: true
+  }
+};
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <Router>
+        <Router future={router.future}>
           <MainLayout>
             <Routes>
               <Route path="/" element={<Navigate to="/patients" replace />} />
@@ -33,7 +41,7 @@ function App() {
               <Route path="/dentists" element={<DentistsPage />} />
               <Route path="/appointments" element={<AppointmentsPage />} />
               <Route path="/treatments/*" element={<div>Tratamientos</div>} />
-              <Route path="/dental-records/*" element={<div>Expedientes</div>} />
+              <Route path="/dental-records/*" element={<DentalRecordsPage />} />
             </Routes>
           </MainLayout>
         </Router>
